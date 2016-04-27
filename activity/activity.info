@@ -1,0 +1,9 @@
+[Activity]
+name = WebMaker
+bundle_id = today.sam.WebMaker
+icon = activity-bibliography
+exec = sugar-activity activity.WebMakerActivity
+activity_version = 1
+show_launcher = yes
+summary = Play with HTML, JS and CSS.  See live output and collaborate with friends.
+repository = https://github.com/samdroid-apps/bibliography-activity
