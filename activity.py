@@ -32,6 +32,7 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
+from sugar3.graphics import style
 
 
 class WebMakerActivity(activity.Activity):
@@ -82,6 +83,7 @@ class WebMakerActivity(activity.Activity):
         self._css = CodeView('css', '/* Add your CSS Styles here */')
         self._js = CodeView('javascript', '// Add your JavaScript Code here')
         self._webview = WebKit2.WebView()
+        self._webview.get_style_context().add_class('webview')
 
         grid.attach(self._html, 0, 0, 1, 1)
         grid.attach(self._js, 0, 1, 1, 1)
@@ -129,6 +131,7 @@ class CodeView(Gtk.ScrolledWindow):
 
     def __init__(self, code_type, text=None):
         Gtk.ScrolledWindow.__init__(self)
+        self.get_style_context().add_class(code_type)
         self._view = GtkSource.View()
         self.add(self._view)
         text_buffer = GtkSource.Buffer()
@@ -143,7 +146,10 @@ class CodeView(Gtk.ScrolledWindow):
                     text_buffer.set_language(lang)
         text_buffer.set_highlight_syntax(True)
 
-        self.set_size_request(int(Gdk.Screen.width() * 0.5), int(Gdk.Screen.height() * 0.4))
+        # "- 2" accounts for the border width
+        self.set_size_request(
+            int(Gdk.Screen.width() * 0.5) - 2,
+            int((Gdk.Screen.height()-style.GRID_CELL_SIZE) * 0.5) - 2)
         self._view.set_buffer(text_buffer)
         self._view.set_editable(True)
         self._view.set_cursor_visible(True)

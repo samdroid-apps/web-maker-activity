@@ -1,0 +1,10 @@
+grid .javascript {
+    border-right: 4px solid #C0C0C0;
+}
+grid .html {
+    border-right: 4px solid #C0C0C0;
+    border-bottom: 4px solid #C0C0C0;
+}
+grid .css {
+    border-bottom: 4px solid #C0C0C0;
+}
